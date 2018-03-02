@@ -26,7 +26,8 @@ public class RayShooter : MonoBehaviour {
 			RaycastHit hit;
 			if (Physics.Raycast(ray, out hit)) {
 				GameObject hitObject = hit.transform.gameObject;
-				ReactiveTarget target = hitObject.GetComponent<ReactiveTarget>();
+				//ReactiveTarget target = hitObject.GetComponent<ReactiveTarget>();
+				AnimationReactiveTarget target = hitObject.GetComponent<AnimationReactiveTarget>();
 				if (target != null) {
 					target.ReactToHit();
 					Messenger.Broadcast(GameEvent.ENEMY_HIT);
