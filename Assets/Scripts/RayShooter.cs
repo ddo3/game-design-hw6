@@ -5,9 +5,11 @@ using System.Collections;
 public class RayShooter : MonoBehaviour {
 	private Camera _camera;
 
+
 	void Start() {
 		_camera = GetComponent<Camera>();
 
+		//this.transform.position;
 		//Cursor.lockState = CursorLockMode.Locked;
 		//Cursor.visible = false;
 	}

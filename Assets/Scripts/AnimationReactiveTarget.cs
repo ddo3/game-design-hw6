@@ -6,7 +6,7 @@ public class AnimationReactiveTarget : MonoBehaviour {
 	Animator animator;
 
 	void Start(){
-		Animator animator = GetComponent<Animator> ();
+		animator = GetComponent<Animator> ();
 		animator.SetBool ("isDead", false);
 
 	}

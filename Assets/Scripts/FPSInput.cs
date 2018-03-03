@@ -13,6 +13,8 @@ public class FPSInput : MonoBehaviour {
 	public float gravity = -9.8f;
 
 	private CharacterController _charController;
+	//private Animator animator;
+
 
 	void Awake() {
 		Messenger<float>.AddListener(GameEvent.SPEED_CHANGED, OnSpeedChanged);
@@ -23,6 +25,9 @@ public class FPSInput : MonoBehaviour {
 
 	void Start() {
 		_charController = GetComponent<CharacterController>();
+		//animator = GetComponent<Animator> ();
+
+
 	}
 	
 	void Update() {
