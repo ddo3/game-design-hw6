@@ -31,6 +31,7 @@ public class WanderingAI : MonoBehaviour {
 			RaycastHit hit;
 			if (Physics.SphereCast(ray, 0.75f, out hit)) {
 				GameObject hitObject = hit.transform.gameObject;
+				//if hit object has a player character component 
 				if (hitObject.GetComponent<PlayerCharacter>()) {
 					if (_fireball == null) {
 						_fireball = Instantiate(fireballPrefab) as GameObject;

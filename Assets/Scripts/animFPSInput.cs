@@ -12,8 +12,8 @@ public class animFPSInput : MonoBehaviour {
 	private CharacterController _charController;
 	private Animator animator;
 
-	private float previousDeltaX;
-	private float previousDeltaZ;
+	//private float previousDeltaX;
+	//float previousDeltaZ;
 
 
 	void Awake() {
@@ -30,8 +30,8 @@ public class animFPSInput : MonoBehaviour {
 		animator.SetBool ("isRunning", false);
 		animator.SetBool ("gameOver", false);
 
-		previousDeltaX = Input.GetAxis("Horizontal") * speed;
-		previousDeltaZ = Input.GetAxis("Vertical") * speed;
+		//previousDeltaX = Input.GetAxis("Horizontal") * speed;
+		//previousDeltaZ = Input.GetAxis("Vertical") * speed;
 
 	}
 
