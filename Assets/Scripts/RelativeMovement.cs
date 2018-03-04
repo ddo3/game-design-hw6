@@ -32,10 +32,6 @@ public class RelativeMovement : MonoBehaviour {
 		_charController = GetComponent<CharacterController>();
 		_animator = GetComponent<Animator>();
 
-		//_animator.SetBool ("startPunch", false);
-		//_animator.SetBool ("isRunning", false);
-		//_animator.SetBool ("gameOver", false);
-
 	}
 	
 	// Update is called once per frame

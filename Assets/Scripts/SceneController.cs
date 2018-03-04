@@ -13,4 +13,8 @@ public class SceneController : MonoBehaviour {
 			_enemy.transform.Rotate(0, angle, 0);
 		}
 	}
+
+	public static void restartGame(){
+		Application.LoadLevel ("Scene");
+	}
 }

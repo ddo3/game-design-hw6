@@ -9,7 +9,8 @@ public class WanderingAI : MonoBehaviour {
 	
 	[SerializeField] private GameObject fireballPrefab;
 	private GameObject _fireball;
-	
+	private Animator animator;
+
 	private bool _alive;
 
 	void Awake() {
@@ -21,6 +22,8 @@ public class WanderingAI : MonoBehaviour {
 
 	void Start() {
 		_alive = true;
+		animator = GetComponent<Animator> ();
+
 	}
 	
 	void Update() {
@@ -33,6 +36,13 @@ public class WanderingAI : MonoBehaviour {
 				GameObject hitObject = hit.transform.gameObject;
 				//if hit object has a player character component 
 				if (hitObject.GetComponent<PlayerCharacter>()) {
+
+					//animator.SetBool ("canPunch", true);
+					animator.SetTrigger("punch");
+					//if (animator.GetNextAnimatorStateInfo(0).IsName("canPunch")) {
+						animator.SetBool("canPunch", false);
+					//}
+
 					if (_fireball == null) {
 						_fireball = Instantiate(fireballPrefab) as GameObject;
 						_fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);

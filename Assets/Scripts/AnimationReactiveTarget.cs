@@ -3,7 +3,7 @@ using System.Collections;
 
 
 public class AnimationReactiveTarget : MonoBehaviour {
-	Animator animator;
+	private Animator animator;
 
 	void Start(){
 		animator = GetComponent<Animator> ();
@@ -18,16 +18,11 @@ public class AnimationReactiveTarget : MonoBehaviour {
 			behavior.SetAlive(false);
 		}
 
-		//StartCoroutine(Die());
-
 		animator.SetBool ("isDead", true);
 
 	}
 
 	private IEnumerator Die() {
-
-		//animator.SetBool ("isDead", true);
-		//this.transform.Rotate(-75, 0, 0);
 
 		yield return new WaitForSeconds(1.5f);
 
