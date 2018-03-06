@@ -11,6 +11,10 @@ public class GameOverUIController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		disableView ();
+	}
+
+	public void disableView(){
 		c = gameOverMenu.GetComponent<Canvas> ();
 
 		c.enabled = false;

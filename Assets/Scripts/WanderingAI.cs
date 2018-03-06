@@ -23,7 +23,7 @@ public class WanderingAI : MonoBehaviour {
 	void Start() {
 		_alive = true;
 		animator = GetComponent<Animator> ();
-
+		animator.SetBool("canPunch", false);
 	}
 	
 	void Update() {
@@ -32,20 +32,25 @@ public class WanderingAI : MonoBehaviour {
 			
 			Ray ray = new Ray(transform.position, transform.forward);
 			RaycastHit hit;
+
 			if (Physics.SphereCast(ray, 0.75f, out hit)) {
 				GameObject hitObject = hit.transform.gameObject;
+
+
 				//if hit object has a player character component 
 				if (hitObject.GetComponent<PlayerCharacter>()) {
 
-					//animator.SetBool ("canPunch", true);
-					animator.SetTrigger("punch");
-					//if (animator.GetNextAnimatorStateInfo(0).IsName("canPunch")) {
-						animator.SetBool("canPunch", false);
-					//}
+
 
 					if (_fireball == null) {
+
+						animator.SetTrigger("punch");
+
 						_fireball = Instantiate(fireballPrefab) as GameObject;
 						_fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
+
+						_fireball.transform.position = new Vector3(_fireball.transform.position.x,_fireball.transform.position.y + 1f,_fireball.transform.position.z);
+
 						_fireball.transform.rotation = transform.rotation;
 					}
 				}
@@ -54,6 +59,9 @@ public class WanderingAI : MonoBehaviour {
 					transform.Rotate(0, angle, 0);
 				}
 			}
+
+
+
 		}
 	}
 

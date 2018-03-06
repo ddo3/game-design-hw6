@@ -41,8 +41,8 @@ public class RelativeMovement : MonoBehaviour {
 		Vector3 movement = Vector3.zero;
 
 		// x z movement transformed relative to target
-		float horInput = Input.GetAxis("Horizontal");
-		float vertInput = Input.GetAxis("Vertical");
+		float horInput = Input.GetAxis ("Horizontal");
+		float vertInput = Input.GetAxis ("Vertical");
 
 		if (horInput != 0 || vertInput != 0) {
 			_animator.SetBool ("isRunning", true);
@@ -64,12 +64,13 @@ public class RelativeMovement : MonoBehaviour {
 			_animator.SetBool ("isRunning", false);
 		}
 
+
 		//_animator.SetFloat("Speed", movement.sqrMagnitude);
 
 		// raycast down to address steep slopes and dropoff edge
 		bool hitGround = false;
 		RaycastHit hit;
-		if (_vertSpeed < 0 && Physics.Raycast(transform.position, Vector3.down, out hit)) {
+		if (_vertSpeed < 0 && Physics.Raycast (transform.position, Vector3.down, out hit)) {
 			float check = (_charController.height + _charController.radius) / 1.9f;
 			hitGround = hit.distance <= check;	// to be sure check slightly beyond bottom of capsule
 		}
@@ -92,15 +93,15 @@ public class RelativeMovement : MonoBehaviour {
 				//_animator.SetBool("Jumping", true);
 			}
 
-			// workaround for standing on dropoff edge
-			if (_charController.isGrounded) {
-				if (Vector3.Dot(movement, _contact.normal) < 0) {
-					movement = _contact.normal * moveSpeed;
-				} else {
-					movement += _contact.normal * moveSpeed;
-				}
+		// workaround for standing on dropoff edge
+		if (_charController.isGrounded) {
+			if (Vector3.Dot (movement, _contact.normal) < 0) {
+				movement = _contact.normal * moveSpeed;
+			} else {
+				movement += _contact.normal * moveSpeed;
 			}
 		}
+	}
 		movement.y = _vertSpeed;
 
 		movement *= Time.deltaTime;
