@@ -5,7 +5,7 @@ using System.Collections;
 public class RayShooter : MonoBehaviour {
 	[SerializeField] private Camera _camera;
 	private Animator animator;
-	[SerializeField] private Sprite xHair;
+	[SerializeField] private GameObject xHair;
 
 	void Start() {
 		//
@@ -23,24 +23,42 @@ public class RayShooter : MonoBehaviour {
 		//float posX = _camera.pixelWidth/2 - size/4;
 		//float posY = _camera.pixelHeight/2 - size/2;
 		//GUI.Label(new Rect(posX, posY, size, size), "*");
+
+		//GUI.DrawTexture(new Rect(posX, posY, size, size), reticle);
 	}
 
 	//
 	void Update() {
 
-		/*
+
 		RaycastHit hit; //raycast from player forward  
 		Physics.Raycast(transform.position,transform.forward,out hit);  
 		//align crosshair to appear in front of environment  
 		xHair.transform.rotation = Quaternion.LookRotation(hit.normal);  
 		Vector3 offset = new Vector3(0, 0, 0.05f);  
-		reticle.transform.position = hit.point + (xHair.transform.rotation   * offset);  
+		xHair.transform.position = hit.point + (xHair.transform.rotation   * offset);  
+
+		xHair.transform.position = new Vector3(xHair.transform.position.x, xHair.transform.position.y + 1f, xHair.transform.position.z);
 
 		//fire sphere with mouse  
 		if (Input.GetMouseButtonDown(0)) {    
-			StartCoroutine(SphereIndicator(hit.point)); 
+			Ray ray = new Ray (transform.position, transform.forward);
+
+			RaycastHit hit2;
+			if (Physics.Raycast (ray, out hit2)) {
+				GameObject hitObject = hit2.transform.gameObject;
+				//ReactiveTarget target = hitObject.GetComponent<ReactiveTarget>();
+				AnimationReactiveTarget target = hitObject.GetComponent<AnimationReactiveTarget> ();
+				if (target != null) {
+					target.ReactToHit ();
+					Messenger.Broadcast (GameEvent.ENEMY_HIT);
+				} 
+				animator.SetTrigger ("punch");
+				StartCoroutine (SphereIndicator (hit.point));
+
+			}
 		}
-	*/
+	/*
 
 
 		if (Input.GetMouseButtonDown (0) && !EventSystem.current.IsPointerOverGameObject ()) {
@@ -67,7 +85,7 @@ public class RayShooter : MonoBehaviour {
 			}
 
 		}
-
+*/
 	}
 
 	private IEnumerator SphereIndicator(Vector3 pos) {

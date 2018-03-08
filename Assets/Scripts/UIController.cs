@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using  System.Collections.Generic;
 
 public class UIController : MonoBehaviour {
 	[SerializeField] private Text scoreLabel;
 	[SerializeField] private SettingsPopup settingsPopup;
 	[SerializeField] private int zombieNum;
+	[SerializeField] private List<GameObject> zombies;
 	[SerializeField] private GameObject gameOverMenu; 
 
 
@@ -29,8 +31,23 @@ public class UIController : MonoBehaviour {
 		gameOverController.disableView ();
 	}
 
+
+	private bool allZombiesAreDead(){
+
+		bool allDead = true;
+		foreach (GameObject zombie in zombies){
+
+			if (zombie.GetComponent<WanderingAI> ().isAlive ()) {
+				allDead = false;
+			}
+		}
+
+		return allDead;
+	}
+
 	void Update(){
-		if (_score == zombieNum){
+		//if(allZombiesAreDead()){
+		if (_score == 1){
 			//for some reason, this is 
 			gameOverController.activateMenu ();
 		}

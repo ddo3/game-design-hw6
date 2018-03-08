@@ -69,6 +69,10 @@ public class WanderingAI : MonoBehaviour {
 		_alive = alive;
 	}
 
+	public bool isAlive(){
+		return _alive;
+	}
+
 	private void OnSpeedChanged(float value) {
 		speed = baseSpeed * value;
 	}

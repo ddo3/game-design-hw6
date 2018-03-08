@@ -26,6 +26,14 @@ public class GameOverUIController : MonoBehaviour {
 	}
 
 
+	public void RestartGame(){
+		Application.LoadLevel ("Scene");
+	}
+
+	public void EndGame(){
+		Application.Quit ();
+	}
+
 	public void activateMenu(){
 		c.enabled = true;
 	}
