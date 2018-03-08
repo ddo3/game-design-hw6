@@ -46,8 +46,8 @@ public class UIController : MonoBehaviour {
 	}
 
 	void Update(){
-		//if(allZombiesAreDead()){
-		if (_score == 1){
+		if(allZombiesAreDead()){
+		//if (_score == 1){
 			//for some reason, this is 
 			gameOverController.activateMenu ();
 		}
